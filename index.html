@@ -31,7 +31,7 @@ tr:hover td{background:#faf8f2}.clk td:first-child{cursor:pointer;color:var(--bl
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 </head><body>
 <h1>Jope — Creative Performance Dashboard</h1>
-<div class="sub">act_522290535874456 · click any row or use the filters — the whole board recalculates · <b>Built 2026-06-08 05:54</b></div>
+<div class="sub">act_522290535874456 · click any row or use the filters — the whole board recalculates · <b>Built 2026-06-08 05:57</b></div>
 
 <div class="panel"><div style="font-weight:700;color:var(--blue);margin-bottom:8px">Triple Whale attribution</div><div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start"><div><div class="small" style="margin-bottom:5px">Model</div><div class="pillbar" id="twmodelpills"></div></div><div><div class="small" style="margin-bottom:5px">Window</div><div class="pillbar" id="twwinpills"></div></div></div><div class="small" style="margin-top:8px;color:var(--mut)">Drives the Triple Whale banner rows, the TW reality-check, and the per-dimension TW columns. The Meta row is Meta\u2019s own attribution and does not change.</div></div>
 <div class="panel">
@@ -67,7 +67,7 @@ const DATA=[{"id":"120234091196340033","name":"47.1 - BAL no sound emotional wit
 const dims=[["agency","Agency"],["concept","Concept Type"],["product","Product"],["funnel","Funnel"],["format","Format"],["prodel","Production Element"],["angle","Angle"],["duration","Duration"],["wl","Whitelisting"]];
 let F={},sortState={},inclLegacy=true,from=DMIN,to=DMAX,minSpend=0;
 let curDim="agency",chartMetric="spend",lineChart=null,barChart=null;
-let twModel="tw",twWin="life";  // default matches the Triple Whale dashboard (Triple Attribution / Lifetime)
+let twModel="fc",twWin="28d";  // default = First Click / 28-day click (per Kisha 2026-06-08)
 const TW_MODELS=[["fc","First Click"],["lc","Last Click"],["tw","Triple Whale"]];
 const TW_WINS=[["28d","28-day click"],["life","Lifetime"]];
 function twKey(){return twModel+"_"+twWin}
