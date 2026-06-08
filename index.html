@@ -31,7 +31,7 @@ tr:hover td{background:#faf8f2}.clk td:first-child{cursor:pointer;color:var(--bl
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
 </head><body>
 <h1>Jope — Creative Performance Dashboard</h1>
-<div class="sub">act_522290535874456 · click any row or use the filters — the whole board recalculates · <b>Built 2026-06-08 05:57</b></div>
+<div class="sub">act_522290535874456 · click any row or use the filters — the whole board recalculates · <b>Built 2026-06-08 06:05</b></div>
 
 <div class="panel"><div style="font-weight:700;color:var(--blue);margin-bottom:8px">Triple Whale attribution</div><div style="display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start"><div><div class="small" style="margin-bottom:5px">Model</div><div class="pillbar" id="twmodelpills"></div></div><div><div class="small" style="margin-bottom:5px">Window</div><div class="pillbar" id="twwinpills"></div></div></div><div class="small" style="margin-top:8px;color:var(--mut)">Drives the Triple Whale banner rows, the TW reality-check, and the per-dimension TW columns. The Meta row is Meta\u2019s own attribution and does not change.</div></div>
 <div class="panel">
@@ -47,6 +47,7 @@ tr:hover td{background:#faf8f2}.clk td:first-child{cursor:pointer;color:var(--bl
     <div class="fg"><label>To</label><input type="date" id="dTo"></div>
     <div class="fg"><label>&nbsp;</label><button id="dReset">Reset to full range</button></div>
   </div>
+  <div class="pillbar" id="datepresets" style="margin-top:10px"></div>
   <div class="small" id="daterangeNote" style="margin-top:8px"></div>
 </div>
 
@@ -174,6 +175,7 @@ const df=document.getElementById('dFrom'),dt=document.getElementById('dTo');
 df.min=DMIN;df.max=DMAX;df.value=DMIN;dt.min=DMIN;dt.max=DMAX;dt.value=DMAX;
 df.onchange=()=>{from=df.value;render()};dt.onchange=()=>{to=dt.value;render()};
 document.getElementById('dReset').onclick=()=>{from=DMIN;to=DMAX;df.value=DMIN;dt.value=DMAX;render()};
+{const D=s=>new Date(s+'T00:00:00');const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');const add=(iso,n)=>{const d=D(iso);d.setDate(d.getDate()+n);return fmt(d)};const cf=f=>f<DMIN?DMIN:f;const mStart=DMAX.slice(0,7)+'-01';const lmEnd=add(mStart,-1);const lmStart=lmEnd.slice(0,7)+'-01';const PR=[['Yesterday',DMAX,DMAX],['Last 7 days',cf(add(DMAX,-6)),DMAX],['Last 14 days',cf(add(DMAX,-13)),DMAX],['Last 30 days',cf(add(DMAX,-29)),DMAX],['This month',cf(mStart),DMAX],['Last month',cf(lmStart),lmEnd<DMIN?DMIN:lmEnd]];const dp=document.getElementById('datepresets');dp.innerHTML=PR.map((p,i)=>'<button class="pill" data-i="'+i+'">'+p[0]+'</button>').join('');dp.querySelectorAll('.pill').forEach(b=>b.onclick=()=>{const p=PR[+b.dataset.i];from=p[1];to=p[2];df.value=from;dt.value=to;render()});}
 {const ms=document.getElementById('minSpend');if(ms)ms.oninput=()=>{minSpend=Number(ms.value)||0;callouts()};}
 render();
 </script></body></html>
